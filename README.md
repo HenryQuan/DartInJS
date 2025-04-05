@@ -1,5 +1,7 @@
-# Dart to JS
-This is finally working to use a Dart function in Javascript. 
+# Dart in JS
+This is finally working to use a Dart function in Javascript.
+
+Update `@JS('globalThis.functionName')` to `window.xxx` for browsers.
 
 Compile dart files into Javascript using:
 ```cmd
