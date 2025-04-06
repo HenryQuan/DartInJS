@@ -2,19 +2,20 @@ import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { DartBridge } from "./DartBridge";
 
 export function App() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     // Call the Dart functionw
-    window.functionName();
+    DartBridge.get().functionName();
     let input_list = [3, 1, 2, 4, 5, 6, 7, 8, 9, 10];
-    const output = window.quickSort(input_list, 0, input_list.length - 1);
+    const output = DartBridge.get().quickSort(input_list, 0, input_list.length - 1);
     console.log("Sorted list: ", output);
     console.log(output);
 
-    window
+    DartBridge.get()
       .fetchData()
       .then((result: string) => {
         console.log("Fetch data: ", result);

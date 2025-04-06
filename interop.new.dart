@@ -5,14 +5,14 @@ import 'quick.dart';
 import "httpin.dart";
 import 'package:js_interop_utils/js_interop_utils.dart';
 
-@JS('globalThis.functionName') // Expose to global JS scope
+@JS('globalThis.dartbridge.functionName') // Expose to global JS scope
 external set _functionName(JSFunction f);
 
 void _someDartFunction() {
   print('Hello from Dart!');
 }
 
-@JS('globalThis.quickSort')
+@JS('globalThis.dartbridge.quickSort')
 external set _quickSort(JSFunction f);
 
 JSArray<JSNumber> _quickSortImpl(
@@ -27,7 +27,7 @@ JSArray<JSNumber> _quickSortImpl(
   return intList.toJS;
 }
 
-@JS('globalThis.fetchData')
+@JS('globalThis.dartbridge.fetchData')
 external set _fetchData(JSFunction f);
 
 JSPromise<JSString> _fetchDataImpl() {
