@@ -30,3 +30,11 @@ output
   .forEach((element: number) => {
     console.log(element);
   });
+
+// try fetching data
+try {
+  const result =await globalThis.fetchData();
+  console.log("Fetch data: ", result);
+} catch (error) {
+  console.error("Error fetching data: ", error);
+}

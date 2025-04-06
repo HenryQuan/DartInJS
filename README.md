@@ -7,7 +7,10 @@ Compile dart files into Javascript using:
 ```cmd
 dart compile js -O2 -o quick.js .\quick.dart
 dart compile js -O2 -o interop.js .\interop.dart
+dart compile js -O2 -o interop.js .\interop.new.dart
 ```
+The new js_interop is indeed easier to use, but the output JS file is larger and requires manual type conversions. I will still keep the initial implementation there to double check in the future.
+
 Then, I use `bun` to run my `dartin.ts` to get my array sorted.
 ```cmd
 bun .\dart.ts
