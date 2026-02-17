@@ -1,19 +1,14 @@
-# Dart in JS - Modern Cross-Platform Integration
+# Dart in JS - Cross-Platform Integration
 
-> **State-of-the-art approach to reuse Dart code in browsers and share converted JS across all platforms**
+> Compile Dart code to JavaScript with modern tooling for use in browsers, Node.js, Bun, and other JavaScript runtimes.
 
-This project demonstrates how to compile Dart code to JavaScript using modern tooling and best practices, enabling seamless integration across browsers, Node.js, Bun, and other JavaScript runtimes.
-
-## ✨ What's New
-
-This repository now features a **complete modern build system** with:
+## ✨ Features
 
 - 🔧 **Automated Build Scripts** - One command to compile everything
-- 📦 **Organized Distribution** - Clean `dist/` directory structure
+- 📦 **Organized Distribution** - Clean `dist/` directory structure  
 - 🎯 **TypeScript Definitions** - Full type safety and IDE support
-- ⚡ **Development Mode** - Watch mode for rapid iteration
-- 🌐 **Cross-Platform Ready** - Use in browsers, Node.js, Bun, etc.
-- 📱 **Example Browser App** - Vite + React demo included
+- ⚡ **Watch Mode** - Auto-rebuild on file changes
+- 🌐 **Cross-Platform** - Works in browsers, Node.js, Bun, etc.
 
 ## 🚀 Quick Start
 
@@ -21,22 +16,15 @@ This repository now features a **complete modern build system** with:
 # Build Dart to JavaScript
 npm run build
 
-# Run the browser example
+# Run the browser example  
 npm run dev:browser
 
 # Watch mode for development
 npm run watch
+
+# Run Node.js example
+npm run example:node
 ```
-
-## 📖 Documentation
-
-For comprehensive documentation, see **[DOCUMENTATION.md](./DOCUMENTATION.md)** which includes:
-
-- Complete setup instructions
-- Usage examples for different platforms
-- Development workflow guide
-- API reference with TypeScript types
-- Architecture explanation
 
 ## 🎯 Usage Example
 
@@ -58,11 +46,12 @@ console.log(JSON.parse(data));
 ### In Node.js/Bun
 
 ```javascript
-import './dist/interop.js';
+// Use the dart-loader to properly initialize
+import dartbridge from './dart-loader.mjs';
 
-// Call Dart functions via the global dartbridge
-globalThis.dartbridge.functionName();
-const sorted = globalThis.dartbridge.quickSort([5, 2, 8, 1], 0, 3);
+// Call Dart functions
+dartbridge.functionName();
+const sorted = dartbridge.quickSort([5, 2, 8, 1], 0, 3);
 ```
 
 ## 🏗️ How It Works
@@ -141,13 +130,8 @@ DartInJS/
 
 ## 🎓 Learn More
 
-- **[Full Documentation](./DOCUMENTATION.md)** - Complete guide
 - **[Dart JS Interop](https://dart.dev/web/js-interop)** - Official Dart docs
 - **[dart2js](https://dart.dev/tools/dart2js)** - Compiler documentation
-
-## 🤝 Contributing
-
-See [DOCUMENTATION.md](./DOCUMENTATION.md) for details on adding new Dart functions and extending the bridge.
 
 ---
 
