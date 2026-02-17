@@ -3,3 +3,6 @@
 *.js
 .dart_tool
 node_modules
+dist/*.js
+!dist/*.d.ts
+dartonbrowser/public/dart
