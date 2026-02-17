@@ -8,12 +8,13 @@
   "types": "dist/interop.d.ts",
   "scripts": {
     "generate-types": "node scripts/generate-types.mjs",
-    "build": "./scripts/build-dart.sh",
-    "build:dart": "./scripts/build-dart.sh",
-    "watch": "./scripts/watch-dart.sh",
-    "watch:dart": "./scripts/watch-dart.sh",
-    "verify": "./scripts/verify-setup.sh",
-    "clean": "rm -rf dist *.js *.js.deps *.js.map",
+    "build": "node scripts/build-dart.mjs",
+    "build:dart": "node scripts/build-dart.mjs",
+    "watch": "node scripts/watch-dart.mjs",
+    "watch:dart": "node scripts/watch-dart.mjs",
+    "verify": "node scripts/verify-setup.mjs",
+    "clean": "node scripts/clean.mjs",
+    "test": "node scripts/test.mjs",
     "dev:browser": "cd dartonbrowser && npm run dev",
     "build:browser": "npm run build:dart && cd dartonbrowser && npm run build",
     "preview:browser": "cd dartonbrowser && npm run preview",
@@ -22,8 +23,6 @@
   "files": [
     "dist",
     "README.md",
-    "DOCUMENTATION.md",
-    "ARCHITECTURE.md",
     "LICENSE"
   ],
   "keywords": [
@@ -38,7 +37,8 @@
     "node"
   ],
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "glob": "^10.5.0"
   },
   "peerDependencies": {
     "typescript": "^5"

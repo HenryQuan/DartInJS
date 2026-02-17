@@ -4,17 +4,23 @@
 
 ## ✨ Features
 
-- 🔧 **Automated Build Scripts** - One command to compile everything
+- 🔧 **Cross-Platform Build Scripts** - Works on Windows, macOS, Linux with Node, Yarn, or Bun
 - 📦 **Organized Distribution** - Clean `dist/` directory structure  
 - 🎯 **Auto-Generated TypeScript Definitions** - Type safety without manual maintenance
 - ⚡ **Watch Mode** - Auto-rebuild on file changes
-- 🌐 **Cross-Platform** - Works in browsers, Node.js, Bun, etc.
+- 🌐 **Universal Runtime Support** - Works in browsers, Node.js, Bun, Deno
+- ✅ **Integrated Tests** - Automated test suite to verify functionality
 
 ## 🚀 Quick Start
 
+**Works with npm, yarn, or bun on Windows, macOS, and Linux!**
+
 ```bash
 # Build Dart to JavaScript
-npm run build
+npm run build        # or: yarn build / bun run build
+
+# Run tests to verify setup
+npm test            # or: yarn test / bun test
 
 # Run the browser example  
 npm run dev:browser
@@ -102,22 +108,29 @@ dist/
 
 ## 🛠️ Available Commands
 
+All commands work with **npm**, **yarn**, or **bun** on any platform:
+
 | Command | Description |
 |---------|-------------|
 | `npm run build` | Compile Dart to optimized JavaScript + auto-generate types |
 | `npm run generate-types` | Regenerate TypeScript definitions from Dart code |
 | `npm run watch` | Auto-recompile on file changes |
-| `npm run clean` | Remove build artifacts |
+| `npm run clean` | Remove build artifacts (cross-platform) |
+| `npm run verify` | Verify environment and setup |
+| `npm test` | Run test suite to validate functionality |
 | `npm run dev:browser` | Start browser development server |
 | `npm run build:browser` | Build browser app for production |
 
 ## 🌟 Key Features
 
-### Modern Build System
+### Cross-Platform Build System
+- **Universal scripts** - JavaScript-based, works on Windows, macOS, Linux
+- **Multiple runtimes** - Node.js, Yarn, Bun, or Deno
 - **Automated compilation** with optimization flags (-O4, --minify)
 - **Multiple build variants** (production + development)
 - **Source maps** for debugging
 - **Watch mode** for development
+- **Integrated tests** - Automated validation suite
 
 ### Type Safety
 - **Auto-generated TypeScript definitions** from Dart signatures
@@ -125,9 +138,9 @@ dist/
 - **IDE autocomplete** and error checking
 - **Type conversions** handled automatically
 
-### Cross-Platform
+### Universal Runtime Support
 - **Browser compatible** (via script tag or module)
-- **Node.js/Bun compatible** (ES modules)
+- **Node.js/Bun/Deno compatible** (ES modules)
 - **Bundler friendly** (Webpack, Rollup, Vite, etc.)
 - **CDN ready** for distribution
 
