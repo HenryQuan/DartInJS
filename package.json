@@ -1,11 +1,41 @@
 {
   "name": "dartjs",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "description": "State-of-the-art Dart to JavaScript compilation with cross-platform module support",
   "private": true,
+  "type": "module",
+  "main": "dist/interop.js",
+  "types": "dist/interop.d.ts",
+  "scripts": {
+    "build": "./scripts/build-dart.sh",
+    "build:dart": "./scripts/build-dart.sh",
+    "watch": "./scripts/watch-dart.sh",
+    "watch:dart": "./scripts/watch-dart.sh",
+    "clean": "rm -rf dist *.js *.js.deps *.js.map",
+    "dev:browser": "cd dartonbrowser && npm run dev",
+    "build:browser": "npm run build:dart && cd dartonbrowser && npm run build",
+    "preview:browser": "cd dartonbrowser && npm run preview"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dart",
+    "javascript",
+    "dart2js",
+    "interop",
+    "cross-platform",
+    "wasm"
+  ],
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
