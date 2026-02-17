@@ -30,6 +30,14 @@ dart --version
 echo -e "${YELLOW}Installing Dart dependencies...${NC}"
 dart pub get
 
+# Generate TypeScript definitions from Dart interop
+echo -e "${YELLOW}Generating TypeScript definitions...${NC}"
+if command -v node &> /dev/null; then
+    node scripts/generate-types.mjs
+else
+    echo -e "${YELLOW}Warning: Node.js not found, skipping type generation${NC}"
+fi
+
 # Compile interop.new.dart (modern js_interop)
 echo -e "${YELLOW}Compiling interop.new.dart...${NC}"
 dart compile js \
@@ -57,6 +65,7 @@ echo -e "${GREEN}Build completed successfully!${NC}"
 echo -e "Output files:"
 echo -e "  - ${GREEN}dist/interop.js${NC} (production build)"
 echo -e "  - ${GREEN}dist/interop.dev.js${NC} (development build with source maps)"
+echo -e "  - ${GREEN}dist/interop.d.ts${NC} (TypeScript definitions)"
 
 # Display file sizes
 echo -e "\n${YELLOW}File sizes:${NC}"

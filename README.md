@@ -6,7 +6,7 @@
 
 - 🔧 **Automated Build Scripts** - One command to compile everything
 - 📦 **Organized Distribution** - Clean `dist/` directory structure  
-- 🎯 **TypeScript Definitions** - Full type safety and IDE support
+- 🎯 **Auto-Generated TypeScript Definitions** - Type safety without manual maintenance
 - ⚡ **Watch Mode** - Auto-rebuild on file changes
 - 🌐 **Cross-Platform** - Works in browsers, Node.js, Bun, etc.
 
@@ -65,15 +65,28 @@ const sorted = dartbridge.quickSort([5, 2, 8, 1], 0, 3);
 
 ```dart
 // In interop.new.dart
+
+// 1. Declare the JS external setter
 @JS('globalThis.dartbridge.myFunction')
 external set _myFunction(JSFunction f);
 
+// 2. Implement your function
 JSNumber _myFunctionImpl(JSNumber input) {
   return (input.toDartInt * 2).toJS;
 }
 
+// 3. Register in main()
 void main() {
   _myFunction = _myFunctionImpl.toJS;
+}
+```
+
+**TypeScript definitions are auto-generated!** Run `npm run build` and the type generator will automatically create TypeScript definitions from your Dart code:
+
+```typescript
+// dist/interop.d.ts (auto-generated)
+export interface DartBridge {
+  myFunction: (input: number) => number;
 }
 ```
 
@@ -91,7 +104,8 @@ dist/
 
 | Command | Description |
 |---------|-------------|
-| `npm run build` | Compile Dart to optimized JavaScript |
+| `npm run build` | Compile Dart to optimized JavaScript + auto-generate types |
+| `npm run generate-types` | Regenerate TypeScript definitions from Dart code |
 | `npm run watch` | Auto-recompile on file changes |
 | `npm run clean` | Remove build artifacts |
 | `npm run dev:browser` | Start browser development server |
@@ -106,7 +120,8 @@ dist/
 - **Watch mode** for development
 
 ### Type Safety
-- **TypeScript definitions** for all exported functions
+- **Auto-generated TypeScript definitions** from Dart signatures
+- **No manual type maintenance** - types update automatically with your Dart code
 - **IDE autocomplete** and error checking
 - **Type conversions** handled automatically
 

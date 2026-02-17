@@ -7,6 +7,7 @@
   "main": "dist/interop.js",
   "types": "dist/interop.d.ts",
   "scripts": {
+    "generate-types": "node scripts/generate-types.mjs",
     "build": "./scripts/build-dart.sh",
     "build:dart": "./scripts/build-dart.sh",
     "watch": "./scripts/watch-dart.sh",
