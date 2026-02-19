@@ -8,6 +8,9 @@ export function App() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    // Using the DartBridge singleton (recommended for React apps)
+    // Alternative: import { getDartBridge } from '../../shared/dartloader' for direct access
+    
     // Call the Dart functionw
     DartBridge.get().functionName();
     let input_list = [3, 1, 2, 4, 5, 6, 7, 8, 9, 10];

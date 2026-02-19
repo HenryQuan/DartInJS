@@ -1,4 +1,5 @@
 import { DartBridgeInterface } from "./bridge";
+import { getDartBridge } from "../../shared/dartloader";
 
 // a singleton to hold the dart bridge
 export class DartBridge {
@@ -28,14 +29,11 @@ export class DartBridge {
   }
 
   public static autoBridge(): void {
-    // @ts-ignore
-    if (window.dartbridge) {
-      // @ts-ignore
-      this.setDartBridge(window.dartbridge);
-      // @ts-ignore
-      delete window.dartbridge;
-    } else {
-      throw new Error("Dart bridge is not set. Please set it before using.");
+    try {
+      const bridge = getDartBridge();
+      this.setDartBridge(bridge);
+    } catch (error) {
+      throw new Error("Dart bridge is not available. Make sure the Dart script is loaded first.");
     }
   }
 }

@@ -1,15 +1,9 @@
 /**
- * TypeScript wrapper for Dart Bridge Loader
+ * TypeScript wrapper for Dart Bridge Loader (Node.js/Bun/Deno)
  * 
- * This provides proper TypeScript types for the dart-loader.mjs
- * so you can import dartbridge with full type safety without manual casting.
+ * This is a compatibility shim that uses the shared dartloader.
+ * For new code, prefer importing from '../shared/dartloader.ts'
  */
 
-import type { DartBridge } from '../dist/interop.js';
-import dartbridgeRaw from './dartloader.mjs';
-
-// Export the properly typed dartbridge
-export const dartbridge = dartbridgeRaw as DartBridge;
-
-// Default export for convenience
-export default dartbridge;
+export { getDartBridge, initDartBridge } from '../shared/dartloader.js';
+export { default } from '../shared/dartloader.js';

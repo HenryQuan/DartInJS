@@ -1,5 +1,5 @@
-export declare interface DartBridgeInterface {
-  functionName: () => void;
-  quickSort: (list: number[], low: number, high: number) => number[];
-  fetchData: () => Promise<string>;
-}
+/**
+ * Re-export the auto-generated DartBridge interface
+ * The actual interface is generated from Dart code in dist/interop.d.ts
+ */
+export type { DartBridge as DartBridgeInterface } from '../../dist/interop.js';
