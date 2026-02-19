@@ -10,27 +10,35 @@ This directory contains the shared TypeScript loader for the Dart bridge that wo
 
 ### Browser (React/Vite)
 
-The browser app uses a singleton pattern for convenience:
-
-```typescript
-import { DartBridge } from './DartBridge';
-
-// Initialize once in main.tsx
-DartBridge.autoBridge();
-
-// Use anywhere in your app
-DartBridge.get().functionName();
-DartBridge.get().quickSort([3, 1, 2], 0, 2);
-await DartBridge.get().fetchData();
-```
-
-Or use the shared loader directly:
+Import and use the dartbridge directly:
 
 ```typescript
 import { getDartBridge } from '../../shared/dartloader';
 
 const dartbridge = getDartBridge();
 dartbridge.functionName();
+dartbridge.quickSort([3, 1, 2], 0, 2);
+await dartbridge.fetchData();
+```
+
+Example in a React component:
+
+```typescript
+import { useEffect } from 'react';
+import { getDartBridge } from '../../shared/dartloader';
+
+export function App() {
+  useEffect(() => {
+    const dartbridge = getDartBridge();
+    dartbridge.functionName();
+    
+    dartbridge.fetchData().then(data => {
+      console.log('Fetched:', data);
+    });
+  }, []);
+  
+  return <div>My App</div>;
+}
 ```
 
 ### Node.js/Bun/Deno
