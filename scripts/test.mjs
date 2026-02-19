@@ -189,16 +189,22 @@ test('Compiled JS exposes dartbridge namespace', () => {
 });
 
 test('dart-loader.mjs exists', () => {
-  const loaderPath = join(rootDir, 'dart-loader.mjs');
+  const loaderPath = join(rootDir, 'js-runtime', 'dart-loader.mjs');
   assert(existsSync(loaderPath), 'dart-loader.mjs not found');
 });
 
-test('Example file exists and is valid', () => {
-  const examplePath = join(rootDir, 'example-node.mjs');
-  assert(existsSync(examplePath), 'example-node.mjs not found');
+test('Example files exist and are valid', () => {
+  const exampleJsPath = join(rootDir, 'js-runtime', 'example-node.mjs');
+  const exampleTsPath = join(rootDir, 'js-runtime', 'example-node.ts');
   
-  const content = readFileSync(examplePath, 'utf-8');
-  assert(content.includes('dartbridge'), 'Example should use dartbridge');
+  assert(existsSync(exampleJsPath), 'example-node.mjs not found');
+  assert(existsSync(exampleTsPath), 'example-node.ts not found');
+  
+  const jsContent = readFileSync(exampleJsPath, 'utf-8');
+  const tsContent = readFileSync(exampleTsPath, 'utf-8');
+  
+  assert(jsContent.includes('dartbridge'), 'JS example should use dartbridge');
+  assert(tsContent.includes('DartBridge'), 'TS example should use DartBridge type');
 });
 
 // Summary
