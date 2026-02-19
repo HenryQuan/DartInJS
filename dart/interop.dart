@@ -25,9 +25,9 @@ JSArray<JSNumber> _quickSortImpl(
   for (int i = 0; i < list.toDart.length; i++) {
     intList.add((list.toDart[i] as JSNumber).toDartInt);
   }
-  
+
   quickSort(intList, low.toDartInt, high.toDartInt);
-  
+
   // Convert back to JSArray
   return intList.map((e) => e.toJS).toList().toJS;
 }
@@ -39,8 +39,17 @@ JSPromise<JSString> _fetchDataImpl() {
   return fetchData().then((value) => value.toJS).toJS;
 }
 
+// another dummy function to test gen
+@JS('globalThis.dartbridge.anotherFunction')
+external set _anotherFunction(JSFunction f);
+
+void _anotherFunctionImpl() {
+  print('This is another function!');
+}
+
 void main() {
   _functionName = _someDartFunction.toJS;
   _quickSort = _quickSortImpl.toJS;
   _fetchData = _fetchDataImpl.toJS;
+  _anotherFunction = _anotherFunctionImpl.toJS;
 }

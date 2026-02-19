@@ -13,7 +13,7 @@ if (typeof globalThis.dartbridge === 'undefined') {
 
 // Step 2: Load the Dart compiled JavaScript
 // We use dynamic import to ensure the namespace is set up first
-await import('./dist/interop.js');
+await import('../dist/interop.js');
 
 // Step 3: Export the dartbridge for convenient access
 export const dartbridge = globalThis.dartbridge;

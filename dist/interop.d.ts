@@ -37,6 +37,11 @@ export interface DartBridge {
    */
   fetchData: () => Promise<string>;
 
+  /**
+   * anotherFunction - Dart function exposed to JavaScript
+   */
+  anotherFunction: () => void;
+
 }
 
 export {};

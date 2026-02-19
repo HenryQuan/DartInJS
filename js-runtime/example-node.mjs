@@ -75,3 +75,6 @@ console.log('This provides full type checking and autocomplete!');
 console.log('\n' + '='.repeat(60));
 console.log('All examples completed!');
 console.log('='.repeat(60));
+
+// new dummy function
+dartbridge.anotherFunction();
