@@ -74,10 +74,10 @@ test('Node.js is available', () => {
 
 test('Required files exist', () => {
   const requiredFiles = [
-    'interop.new.dart',
-    'quick.dart',
-    'httpin.dart',
-    'pubspec.yaml',
+    'dart/interop.dart',
+    'dart/quick.dart',
+    'dart/httpin.dart',
+    'dart/pubspec.yaml',
     'package.json',
     'scripts/build-dart.mjs',
     'scripts/generate-types.mjs',
@@ -130,7 +130,7 @@ console.log('');
 log('Test Group: Build System', colors.yellow);
 
 test('Dart dependencies can be resolved', () => {
-  execSync('dart pub get', { cwd: rootDir, stdio: 'pipe' });
+  execSync('dart pub get', { cwd: join(rootDir, 'dart'), stdio: 'pipe' });
 });
 
 test('Dart code compiles to JavaScript', () => {

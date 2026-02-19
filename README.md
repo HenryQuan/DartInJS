@@ -63,14 +63,16 @@ const sorted = dartbridge.quickSort([5, 2, 8, 1], 0, 3);
 ## 🏗️ How It Works
 
 1. **Write Dart Code** - Use the full power of Dart language and packages
-2. **Export Functions** - Use `js_interop_utils` for modern JS interop
+2. **Export Functions** - Use native `dart:js_interop` (no 3rd party dependencies)
 3. **Compile to JS** - Automated build scripts handle compilation with optimizations
 4. **Use Anywhere** - Import the compiled JS in any JavaScript environment
 
 ### Example: Exposing a Dart Function
 
 ```dart
-// In interop.new.dart
+// In dart/interop.dart
+
+import 'dart:js_interop';
 
 // 1. Declare the JS external setter
 @JS('globalThis.dartbridge.myFunction')
@@ -148,12 +150,19 @@ All commands work with **npm**, **yarn**, or **bun** on any platform:
 
 ```
 DartInJS/
+├── dart/              # Dart source files
+│   ├── interop.dart   # JavaScript interop (uses dart:js_interop)
+│   ├── quick.dart     # QuickSort implementation
+│   ├── httpin.dart    # HTTP operations
+│   └── pubspec.yaml   # Dart dependencies
+├── js-runtime/        # JavaScript/Bun runtime files
+│   ├── dart-loader.mjs
+│   ├── example-node.mjs
+│   └── package.json
 ├── dist/              # Compiled output (gitignored except .d.ts)
-├── scripts/           # Build automation scripts
+├── scripts/           # Cross-platform build scripts
 ├── dartonbrowser/     # Example browser app (Vite + React)
-├── *.dart            # Dart source files
-├── package.json      # Node.js configuration
-└── pubspec.yaml      # Dart configuration
+└── README.md
 ```
 
 ## 🎓 Learn More

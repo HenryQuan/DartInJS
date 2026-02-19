@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Configuration
-const DART_INTEROP_FILE = join(__dirname, '..', 'interop.new.dart');
+const DART_INTEROP_FILE = join(__dirname, '..', 'dart', 'interop.dart');
 const TS_OUTPUT_FILE = join(__dirname, '..', 'dist', 'interop.d.ts');
 
 /**
@@ -150,7 +150,7 @@ function generateTSInterface(functions) {
  * TypeScript definitions for Dart-compiled JavaScript interop
  * 
  * AUTO-GENERATED - DO NOT EDIT MANUALLY
- * Generated from: interop.new.dart
+ * Generated from: dart/interop.dart
  * 
  * To regenerate: npm run generate-types
  */

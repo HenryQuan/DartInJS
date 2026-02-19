@@ -13,6 +13,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
+const dartDir = join(rootDir, 'dart');
+const distDir = join(rootDir, 'dist');
 
 // ANSI color codes for cross-platform colored output
 const colors = {
@@ -44,7 +46,7 @@ function logInfo(message) {
 function exec(command, options = {}) {
   try {
     return execSync(command, {
-      cwd: rootDir,
+      cwd: options.cwd || rootDir,
       encoding: 'utf-8',
       stdio: 'pipe',
       ...options
@@ -90,7 +92,6 @@ async function build() {
   logSuccess('Building Dart to JavaScript...\n');
 
   // Create dist directory
-  const distDir = join(rootDir, 'dist');
   if (!existsSync(distDir)) {
     mkdirSync(distDir, { recursive: true });
   }
@@ -112,7 +113,7 @@ async function build() {
 
   // Install/update Dart dependencies
   logInfo('\nInstalling Dart dependencies...');
-  exec('dart pub get', { stdio: 'inherit' });
+  exec('dart pub get', { cwd: dartDir, stdio: 'inherit' });
 
   // Generate TypeScript definitions
   logInfo('\nGenerating TypeScript definitions...');
@@ -124,14 +125,14 @@ async function build() {
   }
 
   // Compile Dart to JavaScript (production)
-  logInfo('\nCompiling interop.new.dart (production)...');
-  exec('dart compile js --output=dist/interop.js --minify -O4 interop.new.dart', { 
+  logInfo('\nCompiling dart/interop.dart (production)...');
+  exec(`dart compile js --output=${join(distDir, 'interop.js')} --minify -O4 ${join(dartDir, 'interop.dart')}`, { 
     stdio: 'inherit' 
   });
 
   // Compile Dart to JavaScript (development with source maps)
   logInfo('\nGenerating source maps (development)...');
-  exec('dart compile js --output=dist/interop.dev.js --enable-asserts interop.new.dart', { 
+  exec(`dart compile js --output=${join(distDir, 'interop.dev.js')} --enable-asserts ${join(dartDir, 'interop.dart')}`, { 
     stdio: 'inherit' 
   });
 

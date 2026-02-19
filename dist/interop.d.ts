@@ -2,7 +2,7 @@
  * TypeScript definitions for Dart-compiled JavaScript interop
  * 
  * AUTO-GENERATED - DO NOT EDIT MANUALLY
- * Generated from: interop.new.dart
+ * Generated from: dart/interop.dart
  * 
  * To regenerate: npm run generate-types
  */

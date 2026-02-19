@@ -14,6 +14,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
+const dartDir = join(rootDir, 'dart');
 
 const colors = {
   reset: '\x1b[0m',
@@ -42,24 +43,24 @@ function runBuild() {
 }
 
 log('Starting Dart watch mode...', colors.green);
-log('Watching for changes in *.dart files\n', colors.yellow);
+log('Watching for changes in dart/*.dart files\n', colors.yellow);
 
 // Initial build
 runBuild();
 
-// Watch all .dart files in the root directory
-const dartFiles = ['interop.new.dart', 'interop.dart', 'quick.dart', 'httpin.dart'];
+// Watch all .dart files in the dart directory
+const dartFiles = ['interop.dart', 'quick.dart', 'httpin.dart'];
 
 dartFiles.forEach(file => {
-  const filePath = join(rootDir, file);
+  const filePath = join(dartDir, file);
   try {
     watch(filePath, (eventType) => {
       if (eventType === 'change') {
-        log(`\nFile changed: ${file}`, colors.yellow);
+        log(`\nFile changed: dart/${file}`, colors.yellow);
         runBuild();
       }
     });
-    log(`Watching: ${file}`, colors.green);
+    log(`Watching: dart/${file}`, colors.green);
   } catch (error) {
     // File might not exist, skip
   }
