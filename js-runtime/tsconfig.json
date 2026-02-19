@@ -25,5 +25,5 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
   },
-  "include": ["interop.d.ts"]
+  "include": ["../dist/interop.d.ts"]
 }

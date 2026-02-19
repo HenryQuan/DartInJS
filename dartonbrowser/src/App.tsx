@@ -21,6 +21,7 @@ export function App() {
         console.log("Fetch data: ", result);
         const parsedResult = JSON.parse(result);
         console.log("Parsed data: ", parsedResult);
+        DartBridge.get().anotherFunction();
       })
       .catch((error: Error) => {
         console.error("Error fetching data: ", error);

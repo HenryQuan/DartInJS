@@ -5,14 +5,8 @@
  * with full type safety in a TypeScript environment.
  */
 
-// Import the type definitions
-import type { DartBridge } from '../dist/interop.js';
-
-// Use the loader to properly initialize and load Dart code
-import dartbridge from './dart-loader.mjs';
-
-// TypeScript knows the exact types of all dartbridge methods!
-const typedBridge = dartbridge as unknown as DartBridge;
+// Import the typed dartbridge - no casting needed!
+import dartbridge from './dartloader.ts';
 
 console.log('='.repeat(60));
 console.log('Dart in TypeScript - Type-Safe Example');
@@ -21,7 +15,7 @@ console.log('='.repeat(60));
 // Example 1: Call a simple function (TypeScript knows it returns void)
 console.log('\n1. Testing basic function call:');
 try {
-  typedBridge.functionName(); // Type: () => void
+  dartbridge.functionName(); // Type: () => void
 } catch (error) {
   console.error('Error:', error);
 }
@@ -32,7 +26,7 @@ const unsorted: number[] = [64, 34, 25, 12, 22, 11, 90, 88, 45, 50, 23, 36, 18, 
 console.log('Before sorting:', unsorted);
 
 // TypeScript knows: quickSort(list: number[], low: number, high: number): number[]
-const sorted: number[] = typedBridge.quickSort(unsorted, 0, unsorted.length - 1);
+const sorted: number[] = dartbridge.quickSort(unsorted, 0, unsorted.length - 1);
 console.log('After sorting:', sorted);
 
 // Example 3: Sort with edge cases (type-checked)
@@ -41,14 +35,14 @@ const empty: number[] = [];
 const single: number[] = [42];
 const duplicate: number[] = [5, 2, 8, 2, 9, 1, 5];
 
-console.log('Empty array:', typedBridge.quickSort(empty, 0, Math.max(0, empty.length - 1)));
-console.log('Single element:', typedBridge.quickSort(single, 0, single.length - 1));
-console.log('With duplicates:', typedBridge.quickSort(duplicate, 0, duplicate.length - 1));
+console.log('Empty array:', dartbridge.quickSort(empty, 0, Math.max(0, empty.length - 1)));
+console.log('Single element:', dartbridge.quickSort(single, 0, single.length - 1));
+console.log('With duplicates:', dartbridge.quickSort(duplicate, 0, duplicate.length - 1));
 
 // Example 4: Async operation - fetch data (TypeScript knows it returns Promise<string>)
 console.log('\n4. Testing async fetch (requires internet):');
 try {
-  const data: string = await typedBridge.fetchData(); // Type: Promise<string>
+  const data: string = await dartbridge.fetchData(); // Type: Promise<string>
   console.log('Fetched data length:', data.length, 'characters');
   
   // Parse JSON data
@@ -65,7 +59,7 @@ const largeArray: number[] = Array.from({ length: 10000 }, () => Math.floor(Math
 console.log('Sorting', largeArray.length, 'elements...');
 
 const startTime = performance.now();
-const sortedLarge: number[] = typedBridge.quickSort(largeArray, 0, largeArray.length - 1);
+const sortedLarge: number[] = dartbridge.quickSort(largeArray, 0, largeArray.length - 1);
 const endTime = performance.now();
 
 console.log('Sorted in', (endTime - startTime).toFixed(2), 'ms');
@@ -80,9 +74,9 @@ console.log('✓ Prevents runtime errors');
 console.log('✓ Better refactoring support');
 
 // Uncomment to see TypeScript errors:
-// typedBridge.quickSort("not a number array", 0, 5); // ❌ Error: string[] not assignable to number[]
-// typedBridge.quickSort([1, 2, 3], "not a number", 2); // ❌ Error: string not assignable to number
-// const wrongType: number = typedBridge.functionName(); // ❌ Error: void not assignable to number
+// dartbridge.quickSort("not a number array", 0, 5); // ❌ Error: string[] not assignable to number[]
+// dartbridge.quickSort([1, 2, 3], "not a number", 2); // ❌ Error: string not assignable to number
+// const wrongType: number = dartbridge.functionName(); // ❌ Error: void not assignable to number
 
 console.log('\n' + '='.repeat(60));
 console.log('All examples completed with type safety!');

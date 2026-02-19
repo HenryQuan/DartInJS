@@ -6,7 +6,7 @@
  */
 
 // Use the loader to properly initialize and load Dart code
-import dartbridge from './dart-loader.mjs';
+import dartbridge from './dartloader.mjs';
 
 console.log('='.repeat(60));
 console.log('Dart in JavaScript - Node.js/Bun Example');
