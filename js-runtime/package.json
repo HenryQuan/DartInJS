@@ -5,8 +5,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "example:js": "node example-node.mjs",
-    "example:ts": "npx tsx example-node.ts"
+    "example:js": "node example.mjs",
+    "example:ts": "npx tsx example.ts"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

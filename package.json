@@ -18,8 +18,8 @@
     "dev:browser": "cd dartonbrowser && npm run dev",
     "build:browser": "npm run build:dart && cd dartonbrowser && npm run build",
     "preview:browser": "cd dartonbrowser && npm run preview",
-    "example:js": "npm run build && node js-runtime/example-node.mjs",
-    "example:ts": "npm run build && npx tsx js-runtime/example-node.ts"
+    "example:js": "npm run build && node js-runtime/example.mjs",
+    "example:ts": "npm run build && npx tsx js-runtime/example.ts"
   },
   "files": [
     "dist",
